@@ -775,7 +775,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 2:
 YY_RULE_SETUP
-#line 14 "practica.l"
+#line 15 "practica.l"
 {
                         printf("Modulo\n");
                         return(MODULO);
@@ -783,7 +783,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 3:
 YY_RULE_SETUP
-#line 19 "practica.l"
+#line 20 "practica.l"
 {
                                         printf("Cualquier cosa\n");
                                         yylval.caracter = yytext[1];
@@ -792,7 +792,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 4:
 YY_RULE_SETUP
-#line 25 "practica.l"
+#line 26 "practica.l"
 {
                                         printf("Punto y coma %c\n",yytext[0]);
                                         yylval.caracter = yytext[0];
@@ -801,7 +801,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
-#line 31 "practica.l"
+#line 32 "practica.l"
 {
                                         printf("Igual\n");
                                         yylval.caracter = yytext[0];
@@ -810,7 +810,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 6:
 YY_RULE_SETUP
-#line 37 "practica.l"
+#line 38 "practica.l"
 {
                                         printf("Tipo de dato %s\n",yytext);
                                         yylval.cadena = "int";
@@ -819,7 +819,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 7:
 YY_RULE_SETUP
-#line 42 "practica.l"
+#line 43 "practica.l"
 {
                                         printf("Tipo de dato %s\n",yytext);
                                         yylval.cadena = "float";
@@ -828,7 +828,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 8:
 YY_RULE_SETUP
-#line 47 "practica.l"
+#line 48 "practica.l"
 {
                                         printf("Tipo de dato %s\n",yytext);
                                         yylval.cadena = "char";
@@ -837,7 +837,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 9:
 YY_RULE_SETUP
-#line 52 "practica.l"
+#line 53 "practica.l"
 {
                                         printf("Tipo de dato %s\n",yytext);
                                         yylval.cadena = "double";
@@ -846,7 +846,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 10:
 YY_RULE_SETUP
-#line 58 "practica.l"
+#line 59 "practica.l"
 {
                                         int i = 0;
                                         while( yytext[i] ){
@@ -861,7 +861,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 11:
 YY_RULE_SETUP
-#line 70 "practica.l"
+#line 71 "practica.l"
 {
                         printf("Numero entero %s\n",yytext);
                         yylval.entero = atoi(yytext);
@@ -870,7 +870,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 12:
 YY_RULE_SETUP
-#line 77 "practica.l"
+#line 78 "practica.l"
 {
                         printf("Numero flotante %s\n",yytext);
                         yylval.flotante = atof(yytext);
@@ -879,7 +879,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 13:
 YY_RULE_SETUP
-#line 83 "practica.l"
+#line 84 "practica.l"
 {
                         printf("Signo op\n");
                         return (yytext[0]);
@@ -887,7 +887,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 14:
 YY_RULE_SETUP
-#line 88 "practica.l"
+#line 89 "practica.l"
 {
                         printf("Agrupacion\n");
                         return(ABRE);
@@ -895,7 +895,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 15:
 YY_RULE_SETUP
-#line 93 "practica.l"
+#line 94 "practica.l"
 {
                         printf("Agrupacion\n");
                         return(CIERRA);
@@ -903,7 +903,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 16:
 YY_RULE_SETUP
-#line 98 "practica.l"
+#line 99 "practica.l"
 {
                         printf("Separador\n");
                         return(SEPARA);
@@ -912,7 +912,7 @@ YY_RULE_SETUP
 case 17:
 /* rule 17 can match eol */
 YY_RULE_SETUP
-#line 103 "practica.l"
+#line 104 "practica.l"
 {
                         printf("Salto de linea\n");
                         return (yytext[0]);
@@ -920,7 +920,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 18:
 YY_RULE_SETUP
-#line 107 "practica.l"
+#line 108 "practica.l"
 {
                         printf("Comilla\n");
                         return(COMILLA);
@@ -928,7 +928,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 19:
 YY_RULE_SETUP
-#line 112 "practica.l"
+#line 113 "practica.l"
 ECHO;
 	YY_BREAK
 #line 935 "lex.yy.c"
@@ -1936,6 +1936,6 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 112 "practica.l"
+#line 113 "practica.l"
 
 

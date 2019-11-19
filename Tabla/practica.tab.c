@@ -401,7 +401,7 @@ union yyalloc
 /* YYNNTS -- Number of nonterminals.  */
 #define YYNNTS  11
 /* YYNRULES -- Number of rules.  */
-#define YYNRULES  50
+#define YYNRULES  49
 /* YYNSTATES -- Number of states.  */
 #define YYNSTATES  95
 
@@ -453,10 +453,9 @@ static const yytype_uint16 yyrline[] =
 {
        0,    50,    50,    51,    54,    55,    84,   113,   144,   164,
      185,   206,   238,   239,   240,   241,   253,   255,   257,   259,
-     261,   262,   268,   269,   270,   271,   272,   275,   276,   282,
-     283,   284,   285,   286,   287,   288,   289,   290,   291,   292,
-     293,   294,   295,   296,   297,   298,   299,   302,   304,   305,
-     306
+     261,   262,   263,   264,   265,   266,   269,   270,   287,   288,
+     289,   290,   291,   292,   293,   294,   295,   296,   297,   298,
+     299,   300,   301,   302,   303,   304,   307,   309,   310,   311
 };
 #endif
 
@@ -515,16 +514,16 @@ static const yytype_int16 yypact[] =
      means the default is an error.  */
 static const yytype_uint8 yydefact[] =
 {
-       2,     0,     1,    20,    27,     0,     0,    16,    17,     4,
-       3,    21,     0,     0,     0,     0,     0,    49,     0,    18,
+       2,     0,     1,    20,    26,     0,     0,    16,    17,     4,
+       3,    27,     0,     0,     0,     0,     0,    48,     0,    18,
       13,     0,     0,     0,     0,     0,     0,     0,    12,     0,
-       0,     0,     0,     0,    14,     0,    15,    21,     0,     0,
-      48,    47,     0,     0,     0,    19,     0,     0,    22,    33,
-      24,    34,    23,    35,    41,    36,    25,    42,    37,    29,
-      38,    30,    39,    31,    40,    32,     0,    43,    50,     0,
+       0,     0,     0,     0,    14,     0,    15,    27,     0,     0,
+      47,    46,     0,     0,     0,    19,     0,     0,    21,    32,
+      23,    33,    22,    34,    40,    35,    24,    41,    36,    28,
+      37,    29,    38,    30,    39,    31,     0,    42,    49,     0,
        0,     0,     0,     0,     0,     0,     0,     5,     0,     0,
-       0,     0,     8,    10,     9,     0,     0,     0,    26,    45,
-      46,    44,     6,     7,    11
+       0,     0,     8,    10,     9,     0,     0,     0,    25,    44,
+      45,    43,     6,     7,    11
 };
 
   /* YYPGOTO[NTERM-NUM].  */
@@ -605,10 +604,9 @@ static const yytype_uint8 yyr1[] =
 {
        0,    22,    23,    23,    24,    24,    24,    24,    24,    24,
       24,    24,    24,    24,    24,    24,    25,    26,    27,    28,
-      29,    29,    29,    29,    29,    29,    29,    30,    30,    30,
+      29,    29,    29,    29,    29,    29,    30,    30,    30,    30,
       30,    30,    30,    30,    30,    30,    30,    30,    30,    30,
-      30,    30,    30,    30,    30,    30,    30,    31,    32,    32,
-      32
+      30,    30,    30,    30,    30,    30,    31,    32,    32,    32
 };
 
   /* YYR2[YYN] -- Number of symbols on the right hand side of rule YYN.  */
@@ -616,10 +614,9 @@ static const yytype_uint8 yyr2[] =
 {
        0,     2,     0,     2,     1,     4,     6,     6,     5,     5,
        5,     6,     2,     2,     2,     2,     1,     1,     1,     1,
-       1,     1,     3,     3,     3,     3,     6,     1,     1,     3,
+       1,     3,     3,     3,     3,     6,     1,     1,     3,     3,
        3,     3,     3,     3,     3,     3,     3,     3,     3,     3,
-       3,     3,     3,     3,     6,     6,     6,     1,     3,     2,
-       3
+       3,     3,     3,     6,     6,     6,     1,     3,     2,     3
 };
 
 
@@ -1326,7 +1323,7 @@ yyreduce:
 									}
 
 									}
-#line 1330 "practica.tab.c" /* yacc.c:1646  */
+#line 1327 "practica.tab.c" /* yacc.c:1646  */
     break;
 
   case 6:
@@ -1360,7 +1357,7 @@ yyreduce:
 														printf("\n\n");
 													}
 													}
-#line 1364 "practica.tab.c" /* yacc.c:1646  */
+#line 1361 "practica.tab.c" /* yacc.c:1646  */
     break;
 
   case 7:
@@ -1396,7 +1393,7 @@ yyreduce:
 														printf("\n\n");
 													}
 													}
-#line 1400 "practica.tab.c" /* yacc.c:1646  */
+#line 1397 "practica.tab.c" /* yacc.c:1646  */
     break;
 
   case 8:
@@ -1421,7 +1418,7 @@ yyreduce:
 														print(tSim);
 													}
 													}
-#line 1425 "practica.tab.c" /* yacc.c:1646  */
+#line 1422 "practica.tab.c" /* yacc.c:1646  */
     break;
 
   case 9:
@@ -1447,7 +1444,7 @@ yyreduce:
 														print(tSim);
 													}
 													}
-#line 1451 "practica.tab.c" /* yacc.c:1646  */
+#line 1448 "practica.tab.c" /* yacc.c:1646  */
     break;
 
   case 10:
@@ -1473,7 +1470,7 @@ yyreduce:
 														print(tSim);
 													}
 													}
-#line 1477 "practica.tab.c" /* yacc.c:1646  */
+#line 1474 "practica.tab.c" /* yacc.c:1646  */
     break;
 
   case 11:
@@ -1510,25 +1507,25 @@ yyreduce:
 														printf("\n\n");
 													}
 													}
-#line 1514 "practica.tab.c" /* yacc.c:1646  */
+#line 1511 "practica.tab.c" /* yacc.c:1646  */
     break;
 
   case 12:
 #line 238 "practica.y" /* yacc.c:1646  */
     { printf ("\tresultado: %d\n", (yyvsp[-1].entero)); }
-#line 1520 "practica.tab.c" /* yacc.c:1646  */
+#line 1517 "practica.tab.c" /* yacc.c:1646  */
     break;
 
   case 13:
 #line 239 "practica.y" /* yacc.c:1646  */
     { printf("\tVar: %s", (yyvsp[-1].cadena) ); }
-#line 1526 "practica.tab.c" /* yacc.c:1646  */
+#line 1523 "practica.tab.c" /* yacc.c:1646  */
     break;
 
   case 14:
 #line 240 "practica.y" /* yacc.c:1646  */
     { printf ("\tresultado: %f\n", (yyvsp[-1].flotante)); }
-#line 1532 "practica.tab.c" /* yacc.c:1646  */
+#line 1529 "practica.tab.c" /* yacc.c:1646  */
     break;
 
   case 15:
@@ -1543,231 +1540,231 @@ yyreduce:
                         }
                         printf ("\n"); 
                         }
-#line 1547 "practica.tab.c" /* yacc.c:1646  */
+#line 1544 "practica.tab.c" /* yacc.c:1646  */
     break;
 
   case 16:
 #line 253 "practica.y" /* yacc.c:1646  */
     {(yyval.cadena) = (yyvsp[0].cadena);}
-#line 1553 "practica.tab.c" /* yacc.c:1646  */
+#line 1550 "practica.tab.c" /* yacc.c:1646  */
     break;
 
   case 17:
 #line 255 "practica.y" /* yacc.c:1646  */
     {(yyval.cadena) = (yyvsp[0].cadena);}
-#line 1559 "practica.tab.c" /* yacc.c:1646  */
+#line 1556 "practica.tab.c" /* yacc.c:1646  */
     break;
 
   case 18:
 #line 257 "practica.y" /* yacc.c:1646  */
     {(yyval.caracter) = (yyvsp[0].caracter);}
-#line 1565 "practica.tab.c" /* yacc.c:1646  */
+#line 1562 "practica.tab.c" /* yacc.c:1646  */
     break;
 
   case 19:
 #line 259 "practica.y" /* yacc.c:1646  */
     {(yyval.caracter) = (yyvsp[0].caracter);}
-#line 1571 "practica.tab.c" /* yacc.c:1646  */
+#line 1568 "practica.tab.c" /* yacc.c:1646  */
     break;
 
   case 20:
 #line 261 "practica.y" /* yacc.c:1646  */
     { (yyval.entero) = (yyvsp[0].entero); }
-#line 1577 "practica.tab.c" /* yacc.c:1646  */
+#line 1574 "practica.tab.c" /* yacc.c:1646  */
     break;
 
   case 21:
 #line 262 "practica.y" /* yacc.c:1646  */
-    {
-						elemento e = search(tSim, (yyvsp[0].cadena));
-						if( e == NULL )
-							printf("\tNo existe la variable en la tabla\n");
-						(yyval.entero) = e->valor.entero;
-						}
-#line 1588 "practica.tab.c" /* yacc.c:1646  */
+    { (yyval.entero) = (yyvsp[-2].entero) + (yyvsp[0].entero);  }
+#line 1580 "practica.tab.c" /* yacc.c:1646  */
     break;
 
   case 22:
-#line 268 "practica.y" /* yacc.c:1646  */
-    { (yyval.entero) = (yyvsp[-2].entero) + (yyvsp[0].entero);  }
-#line 1594 "practica.tab.c" /* yacc.c:1646  */
+#line 263 "practica.y" /* yacc.c:1646  */
+    { (yyval.entero) = (yyvsp[-2].entero) * (yyvsp[0].entero);	}
+#line 1586 "practica.tab.c" /* yacc.c:1646  */
     break;
 
   case 23:
-#line 269 "practica.y" /* yacc.c:1646  */
-    { (yyval.entero) = (yyvsp[-2].entero) * (yyvsp[0].entero);	}
-#line 1600 "practica.tab.c" /* yacc.c:1646  */
+#line 264 "practica.y" /* yacc.c:1646  */
+    { (yyval.entero) = (yyvsp[-2].entero) - (yyvsp[0].entero);	}
+#line 1592 "practica.tab.c" /* yacc.c:1646  */
     break;
 
   case 24:
-#line 270 "practica.y" /* yacc.c:1646  */
-    { (yyval.entero) = (yyvsp[-2].entero) - (yyvsp[0].entero);	}
-#line 1606 "practica.tab.c" /* yacc.c:1646  */
+#line 265 "practica.y" /* yacc.c:1646  */
+    { (yyval.entero) = (yyvsp[-2].entero) ^ (yyvsp[0].entero);	}
+#line 1598 "practica.tab.c" /* yacc.c:1646  */
     break;
 
   case 25:
-#line 271 "practica.y" /* yacc.c:1646  */
-    { (yyval.entero) = (yyvsp[-2].entero) ^ (yyvsp[0].entero);	}
-#line 1612 "practica.tab.c" /* yacc.c:1646  */
+#line 266 "practica.y" /* yacc.c:1646  */
+    {(yyval.entero) = (yyvsp[-3].entero)%(yyvsp[-1].entero);}
+#line 1604 "practica.tab.c" /* yacc.c:1646  */
     break;
 
   case 26:
-#line 272 "practica.y" /* yacc.c:1646  */
-    {(yyval.entero) = (yyvsp[-3].entero)%(yyvsp[-1].entero);}
-#line 1618 "practica.tab.c" /* yacc.c:1646  */
+#line 269 "practica.y" /* yacc.c:1646  */
+    { (yyval.flotante) = (yyvsp[0].flotante); }
+#line 1610 "practica.tab.c" /* yacc.c:1646  */
     break;
 
   case 27:
-#line 275 "practica.y" /* yacc.c:1646  */
-    { (yyval.flotante) = (yyvsp[0].flotante); }
-#line 1624 "practica.tab.c" /* yacc.c:1646  */
-    break;
-
-  case 28:
-#line 276 "practica.y" /* yacc.c:1646  */
+#line 270 "practica.y" /* yacc.c:1646  */
     {
 	  										elemento e = search(tSim, (yyvsp[0].cadena));
 											if( e == NULL )
 												printf("\tNo existe la variable en la tabla\n");
-											(yyval.flotante) = e->valor.entero;
+											if( strcmp(e->type, "int") == 0 ){
+												(yyval.flotante) = (float) e->valor.entero;
+											}
+											else if( strcmp(e->type, "float") == 0 ){
+												(yyval.flotante) = (float) e->valor.flotante;
+											}
+											else if( strcmp(e->type, "char") == 0 ){
+												(yyval.flotante) = (float) e->valor.caracter;
+											}
+											else if( strcmp(e->type, "double") == 0 ){
+												(yyval.flotante) = (float) e->valor.real;
+											}
 										    }
-#line 1635 "practica.tab.c" /* yacc.c:1646  */
+#line 1632 "practica.tab.c" /* yacc.c:1646  */
+    break;
+
+  case 28:
+#line 287 "practica.y" /* yacc.c:1646  */
+    { (yyval.flotante) = (yyvsp[-2].flotante) + (yyvsp[0].flotante); }
+#line 1638 "practica.tab.c" /* yacc.c:1646  */
     break;
 
   case 29:
-#line 282 "practica.y" /* yacc.c:1646  */
-    { (yyval.flotante) = (yyvsp[-2].flotante) + (yyvsp[0].flotante); }
-#line 1641 "practica.tab.c" /* yacc.c:1646  */
+#line 288 "practica.y" /* yacc.c:1646  */
+    { (yyval.flotante) = (yyvsp[-2].flotante) - (yyvsp[0].flotante); }
+#line 1644 "practica.tab.c" /* yacc.c:1646  */
     break;
 
   case 30:
-#line 283 "practica.y" /* yacc.c:1646  */
-    { (yyval.flotante) = (yyvsp[-2].flotante) - (yyvsp[0].flotante); }
-#line 1647 "practica.tab.c" /* yacc.c:1646  */
+#line 289 "practica.y" /* yacc.c:1646  */
+    { (yyval.flotante) = (yyvsp[-2].flotante) * (yyvsp[0].flotante); }
+#line 1650 "practica.tab.c" /* yacc.c:1646  */
     break;
 
   case 31:
-#line 284 "practica.y" /* yacc.c:1646  */
-    { (yyval.flotante) = (yyvsp[-2].flotante) * (yyvsp[0].flotante); }
-#line 1653 "practica.tab.c" /* yacc.c:1646  */
+#line 290 "practica.y" /* yacc.c:1646  */
+    { (yyval.flotante) = (yyvsp[-2].flotante) / (yyvsp[0].flotante); }
+#line 1656 "practica.tab.c" /* yacc.c:1646  */
     break;
 
   case 32:
-#line 285 "practica.y" /* yacc.c:1646  */
-    { (yyval.flotante) = (yyvsp[-2].flotante) / (yyvsp[0].flotante); }
-#line 1659 "practica.tab.c" /* yacc.c:1646  */
+#line 291 "practica.y" /* yacc.c:1646  */
+    { (yyval.flotante) = (yyvsp[-2].entero) + (yyvsp[0].flotante); }
+#line 1662 "practica.tab.c" /* yacc.c:1646  */
     break;
 
   case 33:
-#line 286 "practica.y" /* yacc.c:1646  */
-    { (yyval.flotante) = (yyvsp[-2].entero) + (yyvsp[0].flotante); }
-#line 1665 "practica.tab.c" /* yacc.c:1646  */
+#line 292 "practica.y" /* yacc.c:1646  */
+    { (yyval.flotante) = (yyvsp[-2].entero) - (yyvsp[0].flotante); }
+#line 1668 "practica.tab.c" /* yacc.c:1646  */
     break;
 
   case 34:
-#line 287 "practica.y" /* yacc.c:1646  */
-    { (yyval.flotante) = (yyvsp[-2].entero) - (yyvsp[0].flotante); }
-#line 1671 "practica.tab.c" /* yacc.c:1646  */
+#line 293 "practica.y" /* yacc.c:1646  */
+    { (yyval.flotante) = (yyvsp[-2].entero) * (yyvsp[0].flotante); }
+#line 1674 "practica.tab.c" /* yacc.c:1646  */
     break;
 
   case 35:
-#line 288 "practica.y" /* yacc.c:1646  */
-    { (yyval.flotante) = (yyvsp[-2].entero) * (yyvsp[0].flotante); }
-#line 1677 "practica.tab.c" /* yacc.c:1646  */
+#line 294 "practica.y" /* yacc.c:1646  */
+    { (yyval.flotante) = (yyvsp[-2].entero) / (yyvsp[0].flotante); }
+#line 1680 "practica.tab.c" /* yacc.c:1646  */
     break;
 
   case 36:
-#line 289 "practica.y" /* yacc.c:1646  */
-    { (yyval.flotante) = (yyvsp[-2].entero) / (yyvsp[0].flotante); }
-#line 1683 "practica.tab.c" /* yacc.c:1646  */
+#line 295 "practica.y" /* yacc.c:1646  */
+    { (yyval.flotante) = (yyvsp[-2].flotante) + (yyvsp[0].entero); }
+#line 1686 "practica.tab.c" /* yacc.c:1646  */
     break;
 
   case 37:
-#line 290 "practica.y" /* yacc.c:1646  */
-    { (yyval.flotante) = (yyvsp[-2].flotante) + (yyvsp[0].entero); }
-#line 1689 "practica.tab.c" /* yacc.c:1646  */
+#line 296 "practica.y" /* yacc.c:1646  */
+    { (yyval.flotante) = (yyvsp[-2].flotante) - (yyvsp[0].entero); }
+#line 1692 "practica.tab.c" /* yacc.c:1646  */
     break;
 
   case 38:
-#line 291 "practica.y" /* yacc.c:1646  */
-    { (yyval.flotante) = (yyvsp[-2].flotante) - (yyvsp[0].entero); }
-#line 1695 "practica.tab.c" /* yacc.c:1646  */
+#line 297 "practica.y" /* yacc.c:1646  */
+    { (yyval.flotante) = (yyvsp[-2].flotante) * (yyvsp[0].entero); }
+#line 1698 "practica.tab.c" /* yacc.c:1646  */
     break;
 
   case 39:
-#line 292 "practica.y" /* yacc.c:1646  */
-    { (yyval.flotante) = (yyvsp[-2].flotante) * (yyvsp[0].entero); }
-#line 1701 "practica.tab.c" /* yacc.c:1646  */
+#line 298 "practica.y" /* yacc.c:1646  */
+    { (yyval.flotante) = (yyvsp[-2].flotante) / (yyvsp[0].entero); }
+#line 1704 "practica.tab.c" /* yacc.c:1646  */
     break;
 
   case 40:
-#line 293 "practica.y" /* yacc.c:1646  */
-    { (yyval.flotante) = (yyvsp[-2].flotante) / (yyvsp[0].entero); }
-#line 1707 "practica.tab.c" /* yacc.c:1646  */
+#line 299 "practica.y" /* yacc.c:1646  */
+    { (yyval.flotante) = (yyvsp[-2].entero) / (float)(yyvsp[0].entero); }
+#line 1710 "practica.tab.c" /* yacc.c:1646  */
     break;
 
   case 41:
-#line 294 "practica.y" /* yacc.c:1646  */
-    { (yyval.flotante) = (yyvsp[-2].entero) / (float)(yyvsp[0].entero); }
-#line 1713 "practica.tab.c" /* yacc.c:1646  */
+#line 300 "practica.y" /* yacc.c:1646  */
+    { (yyval.flotante) = pow((yyvsp[-2].entero),(yyvsp[0].flotante));	}
+#line 1716 "practica.tab.c" /* yacc.c:1646  */
     break;
 
   case 42:
-#line 295 "practica.y" /* yacc.c:1646  */
-    { (yyval.flotante) = pow((yyvsp[-2].entero),(yyvsp[0].flotante));	}
-#line 1719 "practica.tab.c" /* yacc.c:1646  */
+#line 301 "practica.y" /* yacc.c:1646  */
+    { (yyval.flotante) = pow((yyvsp[-2].flotante),(yyvsp[0].flotante));	}
+#line 1722 "practica.tab.c" /* yacc.c:1646  */
     break;
 
   case 43:
-#line 296 "practica.y" /* yacc.c:1646  */
-    { (yyval.flotante) = pow((yyvsp[-2].flotante),(yyvsp[0].flotante));	}
-#line 1725 "practica.tab.c" /* yacc.c:1646  */
+#line 302 "practica.y" /* yacc.c:1646  */
+    {(yyval.flotante) = fmod((yyvsp[-3].flotante),(yyvsp[-1].flotante));}
+#line 1728 "practica.tab.c" /* yacc.c:1646  */
     break;
 
   case 44:
-#line 297 "practica.y" /* yacc.c:1646  */
-    {(yyval.flotante) = fmod((yyvsp[-3].flotante),(yyvsp[-1].flotante));}
-#line 1731 "practica.tab.c" /* yacc.c:1646  */
+#line 303 "practica.y" /* yacc.c:1646  */
+    {(yyval.flotante) = fmod((yyvsp[-3].entero),(yyvsp[-1].flotante));}
+#line 1734 "practica.tab.c" /* yacc.c:1646  */
     break;
 
   case 45:
-#line 298 "practica.y" /* yacc.c:1646  */
-    {(yyval.flotante) = fmod((yyvsp[-3].entero),(yyvsp[-1].flotante));}
-#line 1737 "practica.tab.c" /* yacc.c:1646  */
+#line 304 "practica.y" /* yacc.c:1646  */
+    {(yyval.flotante) = fmod((yyvsp[-3].flotante),(yyvsp[-1].entero));}
+#line 1740 "practica.tab.c" /* yacc.c:1646  */
     break;
 
   case 46:
-#line 299 "practica.y" /* yacc.c:1646  */
-    {(yyval.flotante) = fmod((yyvsp[-3].flotante),(yyvsp[-1].entero));}
-#line 1743 "practica.tab.c" /* yacc.c:1646  */
+#line 307 "practica.y" /* yacc.c:1646  */
+    {(yyval.caracter) = (yyvsp[0].caracter);}
+#line 1746 "practica.tab.c" /* yacc.c:1646  */
     break;
 
   case 47:
-#line 302 "practica.y" /* yacc.c:1646  */
-    {(yyval.caracter) = (yyvsp[0].caracter);}
-#line 1749 "practica.tab.c" /* yacc.c:1646  */
+#line 309 "practica.y" /* yacc.c:1646  */
+    {(yyval.cadena) = (yyvsp[-1].cadena);}
+#line 1752 "practica.tab.c" /* yacc.c:1646  */
     break;
 
   case 48:
-#line 304 "practica.y" /* yacc.c:1646  */
-    {(yyval.cadena) = (yyvsp[-1].cadena);}
-#line 1755 "practica.tab.c" /* yacc.c:1646  */
+#line 310 "practica.y" /* yacc.c:1646  */
+    {(yyval.cadena) = "";}
+#line 1758 "practica.tab.c" /* yacc.c:1646  */
     break;
 
   case 49:
-#line 305 "practica.y" /* yacc.c:1646  */
-    {(yyval.cadena) = "";}
-#line 1761 "practica.tab.c" /* yacc.c:1646  */
-    break;
-
-  case 50:
-#line 306 "practica.y" /* yacc.c:1646  */
+#line 311 "practica.y" /* yacc.c:1646  */
     {}
-#line 1767 "practica.tab.c" /* yacc.c:1646  */
+#line 1764 "practica.tab.c" /* yacc.c:1646  */
     break;
 
 
-#line 1771 "practica.tab.c" /* yacc.c:1646  */
+#line 1768 "practica.tab.c" /* yacc.c:1646  */
       default: break;
     }
   /* User semantic actions sometimes alter yychar, and that requires
@@ -1995,7 +1992,7 @@ yyreturn:
 #endif
   return yyresult;
 }
-#line 308 "practica.y" /* yacc.c:1906  */
+#line 313 "practica.y" /* yacc.c:1906  */
 
 
 int main() {

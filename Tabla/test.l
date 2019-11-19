@@ -25,4 +25,15 @@ SIMBOLO _
                         printf("Cadena %s\n",yytext );
                         yylval.cadena = yytext;
                         return(CADENA);
-                        }*/
+                        }
+
+| nom_var			{
+						elemento e = search(tSim, $1);
+						if( e == NULL )
+							printf("\tNo existe la variable en la tabla\n");
+						$$ = e->valor.entero;
+						}
+
+
+						
+                        */

@@ -9,7 +9,8 @@ SIMBOLO _
 
 %%
 
-" "                                     {}
+" "                                   {}
+
 
 "MOD"                   {
                         printf("Modulo\n");

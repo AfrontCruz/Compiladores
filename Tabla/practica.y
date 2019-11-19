@@ -259,12 +259,6 @@ equal: EQUALS		{$$ = $1;}
 fin: FIN_EXP		{$$ = $1;}
              
 exp_entera:     ENTERO	{ $$ = $1; }
-	| nom_var			{
-						elemento e = search(tSim, $1);
-						if( e == NULL )
-							printf("\tNo existe la variable en la tabla\n");
-						$$ = e->valor.entero;
-						}
 	| exp_entera '+' exp_entera        { $$ = $1 + $3;  }
 	| exp_entera '*' exp_entera        { $$ = $1 * $3;	}
 	| exp_entera '-' exp_entera        { $$ = $1 - $3;	}
@@ -277,7 +271,18 @@ exp_float: FLOTANTE                		 	{ $$ = $1; }
 	  										elemento e = search(tSim, $1);
 											if( e == NULL )
 												printf("\tNo existe la variable en la tabla\n");
-											$$ = e->valor.entero;
+											if( strcmp(e->type, "int") == 0 ){
+												$$ = (float) e->valor.entero;
+											}
+											else if( strcmp(e->type, "float") == 0 ){
+												$$ = (float) e->valor.flotante;
+											}
+											else if( strcmp(e->type, "char") == 0 ){
+												$$ = (float) e->valor.caracter;
+											}
+											else if( strcmp(e->type, "double") == 0 ){
+												$$ = (float) e->valor.real;
+											}
 										    }
 	  | exp_float '+' exp_float	 			{ $$ = $1 + $3; }
 	  | exp_float '-' exp_float	 			{ $$ = $1 - $3; }

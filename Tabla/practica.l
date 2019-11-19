@@ -5,9 +5,15 @@
 NUM [0-9]+
 DIG [0-9]
 ABC [a-z]|[A-Z]
-
+SIMBOLO _
 
 %%
+
+({ABC}+{DIG}*|{SIMBOLO}+{DIG}*{ABC}*)+  {
+                                        printf("Variable: %s\n",yytext);
+                                        yylval.cadena = yytext;
+                                        return(VARIABLE);
+                                        }
 
 "MOD"                   {
                         printf("Modulo\n");
@@ -22,7 +28,6 @@ ABC [a-z]|[A-Z]
 
 ({ABC}*|{DIG}*|" ")*   {
                         printf("Cadena %s\n",yytext );
-                        int i = 0;
                         yylval.cadena = yytext;
                         return(CADENA);
                         }

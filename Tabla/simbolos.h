@@ -25,3 +25,4 @@ struct tabla{
 
 int add(tabla, elemento);
 void print(tabla);
+elemento search(tabla, char*);

@@ -1,12 +1,15 @@
 %{
 	#include <math.h>
 	#include <string.h>
+	#include "simbolos.h"
 %}
              
 /* Declaraciones de BISON */
 %union{
 	int entero;
 	float flotante;
+	char caracter;
+	double real;
 	char* cadena;
 }
 
@@ -18,9 +21,13 @@
 %token MODULO
 %token COMILLA
 %token <cadena> CADENA
+%token <cadena> VARIABLE
+
 %type <entero> exp_entera
 %type <flotante> exp_float
 %type <cadena> string
+%type <cadena> nom_var
+
              
 %left '+' '-'
 %left '*' '/'
@@ -35,6 +42,7 @@ input:    /* cadena vacía */
 
 line:     '\n'
         | exp_entera '\n'  { printf ("\tresultado: %d\n", $1); }
+        | nom_var '\n' { printf("\tVar: %s", $1 ); }
         | exp_float '\n'  { printf ("\tresultado: %f\n", $1); }
         | string '\n'  {
         				printf ("\tresultado: "); 
@@ -47,6 +55,8 @@ line:     '\n'
                         printf ("\n"); 
                         }
 ;
+
+nom_var:	VARIABLE {$$ = $1;}
              
 exp_entera:     ENTERO	{ $$ = $1; }
 	| exp_entera '+' exp_entera        { $$ = $1 + $3;  }

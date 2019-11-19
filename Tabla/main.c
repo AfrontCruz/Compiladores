@@ -3,6 +3,59 @@
 #include "simbolos.h"
 #include <string.h>
 
+int add(tabla tSim, elemento new){
+	/*Este if inserta el primer tope de la tabla de símbolos*/
+	if( tSim->inicio == NULL ){
+		tSim->inicio = new;
+		return 1;
+	}
+	elemento aux = tSim->inicio;
+
+	while( aux->next != NULL ){
+		aux = aux->next;
+	}
+	if( strcmp( aux->nombre, new->nombre ) == 0 ){
+		printf("Ya existe el elemento en la tabla de simbolos\n");
+		return -1;
+	}
+	aux->next = new;
+	return 1;
+}
+
+elemento search(tabla tSim, char* nombre){
+	elemento e = tSim->inicio;
+	while( e != NULL ){
+		if( strcmp(e->nombre, nombre) == 0 ){
+			printf("Lo encontre\n");
+			return e;
+		}
+		e->next;
+	}
+	return NULL;
+}
+
+void update(elemento aux, tipo t){
+	aux->valor = t;
+}
+
+void print(tabla tSim){
+	elemento e = tSim->inicio;
+	printf("ID\tNombre\tTipo\tValor\n");
+	while( e != NULL ){
+		if( strcmp(e->type,"ENTERO") == 0 )
+			printf("%i\t%s\t%s\t%i\n", e->id, e->nombre, e->type, e->valor.entero);
+		else if( strcmp(e->type,"CHAR") == 0 )
+			printf("%i\t%s\t%s\t%c\n", e->id, e->nombre, e->type, e->valor.caracter);
+		else if( strcmp(e->type,"FLOAT") == 0 )
+			printf("%i\t%s\t%s\t%f\n", e->id, e->nombre, e->type, e->valor.flotante);
+		else
+			printf("%i\t%s\t%s\t%lf\n", e->id, e->nombre, e->type, e->valor.real);
+		e = e->next;
+	}
+}
+
+/*
+
 int main(){
 	tabla tSim = malloc( sizeof(struct tabla) );
 	tSim->inicio = NULL;
@@ -76,65 +129,19 @@ int main(){
 
 	print(tSim);
 
+	elemento aux = search(tSim, "myvar");
+	printf("Elemento buscado... \n");
+	printf("%i\t%s\t%s\t%i\n", aux->id, aux->nombre, aux->type, aux->valor.entero);
+	tipo t;
+	t.entero = 5;
+	aux->valor = t;
+
+	printf("Nueva ----\n\n\n");
+	print(tSim);
+
 	free(tSim);
 	free(e);
 	free(b);
 	free(a);
 	return 0;
-}
-
-int add(tabla tSim, elemento new){
-	/*Este if inserta el primer tope de la tabla de símbolos*/
-	if( tSim->inicio == NULL ){
-		tSim->inicio = new;
-		return 1;
-	}
-	elemento aux = tSim->inicio;
-
-	while( aux->next != NULL ){
-		aux = aux->next;
-	}
-	if( strcmp( aux->nombre, new->nombre ) == 0 ){
-		printf("Ya existe el elemento en la tabla de simbolos\n");
-		return -1;
-	}
-	aux->next = new;
-	return 1;
-}
-
-void print(tabla tSim){
-	elemento e = tSim->inicio;
-	printf("ID\tNombre\tTipo\tValor\n");
-	while( e != NULL ){
-		if( strcmp(e->type,"ENTERO") == 0 )
-			printf("%i\t%s\t%s\t%i\n", e->id, e->nombre, e->type, e->valor.entero);
-		else if( strcmp(e->type,"CHAR") == 0 )
-			printf("%i\t%s\t%s\t%c\n", e->id, e->nombre, e->type, e->valor.caracter);
-		else if( strcmp(e->type,"FLOAT") == 0 )
-			printf("%i\t%s\t%s\t%f\n", e->id, e->nombre, e->type, e->valor.flotante);
-		else
-			printf("%i\t%s\t%s\t%lf\n", e->id, e->nombre, e->type, e->valor.real);
-		e = e->next;
-	}
-}
-
-
-/*
-elemento e = malloc(sizeof(struct elemento));
-	
-	if( e == NULL)
-		printf("No se pudo reservar memoria\n");
-
-	e->type = "ENTERO";
-	e->valor.entero = 1;
-	e->nombre = "myvar";
-	e->id = 1;
-	e->next = NULL;
-
-	printf("ID\tNombre\tTipo\tValor\n");
-	printf("%i\t%s\t%s\t%i\n", e->id, e->nombre, e->type, e->valor);
-
-	free(e);
-
-*/
-
+}*/

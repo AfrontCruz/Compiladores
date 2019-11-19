@@ -3,6 +3,7 @@
 #include "simbolos.h"
 #include <string.h>
 
+
 int add(tabla tSim, elemento new){
 	/*Este if inserta el primer tope de la tabla de símbolos*/
 	if( tSim->inicio == NULL ){
@@ -26,10 +27,9 @@ elemento search(tabla tSim, char* nombre){
 	elemento e = tSim->inicio;
 	while( e != NULL ){
 		if( strcmp(e->nombre, nombre) == 0 ){
-			printf("Lo encontre\n");
 			return e;
 		}
-		e->next;
+		e = e->next;
 	}
 	return NULL;
 }
@@ -40,16 +40,16 @@ void update(elemento aux, tipo t){
 
 void print(tabla tSim){
 	elemento e = tSim->inicio;
-	printf("ID\tNombre\tTipo\tValor\n");
+	printf("\tID\tNombre\tTipo\tValor\n");
 	while( e != NULL ){
-		if( strcmp(e->type,"ENTERO") == 0 )
-			printf("%i\t%s\t%s\t%i\n", e->id, e->nombre, e->type, e->valor.entero);
-		else if( strcmp(e->type,"CHAR") == 0 )
-			printf("%i\t%s\t%s\t%c\n", e->id, e->nombre, e->type, e->valor.caracter);
-		else if( strcmp(e->type,"FLOAT") == 0 )
-			printf("%i\t%s\t%s\t%f\n", e->id, e->nombre, e->type, e->valor.flotante);
+		if( strcmp(e->type,"int") == 0 )
+			printf("\t%i\t%s\t%s\t%i\n", e->id, e->nombre, e->type, e->valor.entero);
+		else if( strcmp(e->type,"char") == 0 )
+			printf("\t%i\t%s\t%s\t%c\n", e->id, e->nombre, e->type, e->valor.caracter);
+		else if( strcmp(e->type,"float") == 0 )
+			printf("\t%i\t%s\t%s\t%f\n", e->id, e->nombre, e->type, e->valor.flotante);
 		else
-			printf("%i\t%s\t%s\t%lf\n", e->id, e->nombre, e->type, e->valor.real);
+			printf("\t%i\t%s\t%s\t%lf\n", e->id, e->nombre, e->type, e->valor.real);
 		e = e->next;
 	}
 }

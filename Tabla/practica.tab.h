@@ -47,13 +47,17 @@ extern int yydebug;
   {
     ENTERO = 258,
     FLOTANTE = 259,
-    ABRE = 260,
-    CIERRA = 261,
-    SEPARA = 262,
-    MODULO = 263,
-    COMILLA = 264,
-    CADENA = 265,
-    VARIABLE = 266
+    CARACTER = 260,
+    ABRE = 261,
+    CIERRA = 262,
+    SEPARA = 263,
+    MODULO = 264,
+    COMILLA = 265,
+    CADENA = 266,
+    VARIABLE = 267,
+    TIPO = 268,
+    EQUALS = 269,
+    FIN_EXP = 270
   };
 #endif
 
@@ -62,7 +66,7 @@ extern int yydebug;
 
 union YYSTYPE
 {
-#line 8 "practica.y" /* yacc.c:1909  */
+#line 11 "practica.y" /* yacc.c:1909  */
 
 	int entero;
 	float flotante;
@@ -70,7 +74,7 @@ union YYSTYPE
 	double real;
 	char* cadena;
 
-#line 74 "practica.tab.h" /* yacc.c:1909  */
+#line 78 "practica.tab.h" /* yacc.c:1909  */
 };
 
 typedef union YYSTYPE YYSTYPE;

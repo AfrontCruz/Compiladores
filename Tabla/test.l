@@ -18,3 +18,11 @@ SIMBOLO _
 " " printf("SPACE\n");
 
 %%
+
+
+
+/*({ABC}*|{DIG}*|" ")*   {
+                        printf("Cadena %s\n",yytext );
+                        yylval.cadena = yytext;
+                        return(CADENA);
+                        }*/

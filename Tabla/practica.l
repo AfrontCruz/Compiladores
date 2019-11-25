@@ -11,6 +11,19 @@ SIMBOLO _
 
 " "                                   {}
 
+"\"".*"\""               {
+                        //printf("String: %s\n", yytext);
+                        int i = 0;
+                        while( yytext[i] )
+                                i++;
+                        char* aux = malloc(sizeof(char)*i);
+                        for(int j = 1; j < i - 1; j++)
+                                aux[j-1] = yytext[j];
+                        printf("String: %s\n", aux);
+                        yylval.cadena = aux;
+                        return(CADENA);
+                        }
+
 
 "MOD"                   {
                         printf("Modulo\n");
@@ -53,6 +66,11 @@ SIMBOLO _
 "double"                                {
                                         printf("Tipo de dato %s\n",yytext);
                                         yylval.cadena = "double";
+                                        return(TIPO);
+                                        }
+"string"                                {
+                                        printf("Tipo de dato %s\n",yytext);
+                                        yylval.cadena = "string";
                                         return(TIPO);
                                         }
 

@@ -72,6 +72,9 @@ line:     '\n'
 									else if( strcmp($1, "double") == 0 ){
 										e->valor.real = 0.0;
 									}
+									else if( strcmp($1, "string") == 0 ){
+										e->valor.cadena = "";
+									}
 
 									if( add(tSim, e) == 1 ){
 										printf("\n\n\t----Tabla de Simbolos----\n\n");
@@ -158,6 +161,7 @@ line:     '\n'
 														else if( strcmp(e->type, "double") == 0 ){
 															e->valor.real = (double)$3;
 														}
+														printf("\n\n\t----Tabla de Simbolos----\n\n");
 														print(tSim);
 													}
 													}
@@ -179,6 +183,7 @@ line:     '\n'
 														else if( strcmp(e->type, "double") == 0 ){
 															e->valor.real = (double)$3;
 														}
+														printf("\n\n\t----Tabla de Simbolos----\n\n");
 														print(tSim);
 													}
 													}
@@ -200,6 +205,7 @@ line:     '\n'
 														else if( strcmp(e->type, "double") == 0 ){
 															e->valor.real = (double)$3;
 														}
+														printf("\n\n\t----Tabla de Simbolos----\n\n");
 														print(tSim);
 													}
 													}
@@ -234,6 +240,20 @@ line:     '\n'
 														tSim->elementos++;
 														printf("\n\n");
 													}
+													}
+		| tipo nom_var equal string fin '\n' 		{
+													printf("\tAsignacion cadena\n");
+													elemento e = malloc( sizeof(struct elemento) );
+													if( e == NULL)
+														printf("No se pudo reservar memoria\n");
+													e->type = $1;
+													e->nombre = $2;
+													e->id = tSim->elementos;
+													e->next = NULL;
+													e->valor.cadena = $4;
+													int i = add(tSim,e);
+													print(tSim);
+													tSim->elementos++;
 													}
         | exp_entera '\n'  { printf ("\tresultado: %d\n", $1); }
         | nom_var '\n' { printf("\tVar: %s", $1 ); }
@@ -283,6 +303,7 @@ exp_float: FLOTANTE                		 	{ $$ = $1; }
 											else if( strcmp(e->type, "double") == 0 ){
 												$$ = (float) e->valor.real;
 											}
+											printf("\tFloat: %f\n", $$);
 										    }
 	  | exp_float '+' exp_float	 			{ $$ = $1 + $3; }
 	  | exp_float '-' exp_float	 			{ $$ = $1 - $3; }
@@ -299,6 +320,8 @@ exp_float: FLOTANTE                		 	{ $$ = $1; }
 	  | exp_entera '/' exp_entera			{ $$ = $1 / (float)$3; }
 	  | exp_entera '^' exp_float        	{ $$ = pow($1,$3);	}
 	  | exp_float '^' exp_float        		{ $$ = pow($1,$3);	}
+	  | exp_float '^' exp_entera        		{ $$ = pow($1,$3);	}
+
 	|	MODULO ABRE exp_float SEPARA exp_float CIERRA 	{$$ = fmod($3,$5);}
 	|	MODULO ABRE exp_entera SEPARA exp_float CIERRA 	{$$ = fmod($3,$5);}
 	|	MODULO ABRE exp_float SEPARA exp_entera CIERRA 	{$$ = fmod($3,$5);}
@@ -306,9 +329,20 @@ exp_float: FLOTANTE                		 	{ $$ = $1; }
 
 exp_char: CARACTER {$$ = $1;}
 
-string: COMILLA CADENA COMILLA 				{$$ = $2;}
-	|	COMILLA COMILLA 					{$$ = "";}
-	|	string '+' string 					{}
+string: CADENA 				{
+							printf("\tCadena: %s\n",$1);
+							$$ = $1;
+							}
+	|	 					{$$ = "";}
+	|	string '^' string 	{
+							int i = 0;
+							while( $1[i] )
+								i++;
+							char* aux = malloc(sizeof(char)*2*i);
+							for(int j = 0; j < 2*i; i++)
+								aux[j] = $1[j%i];
+							printf("%s\n", aux);
+							}
 
 %%
 

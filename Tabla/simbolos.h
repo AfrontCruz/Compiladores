@@ -7,6 +7,7 @@ union tipo{
 	char caracter;
 	double real;
 	float flotante;
+	char* cadena;
 };
 
 struct elemento

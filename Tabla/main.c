@@ -48,8 +48,10 @@ void print(tabla tSim){
 			printf("\t%i\t%s\t%s\t%c\n", e->id, e->nombre, e->type, e->valor.caracter);
 		else if( strcmp(e->type,"float") == 0 )
 			printf("\t%i\t%s\t%s\t%f\n", e->id, e->nombre, e->type, e->valor.flotante);
-		else
+		else if( strcmp(e->type,"double") == 0 )
 			printf("\t%i\t%s\t%s\t%lf\n", e->id, e->nombre, e->type, e->valor.real);
+		else
+			printf("\t%i\t%s\t%s\t%s\n", e->id, e->nombre, e->type, e->valor.cadena);
 		e = e->next;
 	}
 }

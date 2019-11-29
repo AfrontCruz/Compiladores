@@ -24,6 +24,9 @@ struct tabla{
 	int elementos;
 };
 
+tabla tSim;
+char* invert(char* s1);
+char* concat(char *a1, char *a2);
 int add(tabla, elemento);
 void print(tabla);
 elemento search(tabla, char*);

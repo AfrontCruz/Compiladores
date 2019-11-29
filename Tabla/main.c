@@ -56,6 +56,30 @@ void print(tabla tSim){
 	}
 }
 
+char* concat(char *a1, char *a2){
+	int i = 0, j = 0;
+	while( a1[i] )
+		i++;
+	while( a2[j] )
+		j++;
+	char* aux = malloc(sizeof(char)*(i+j));
+	aux = strcat(a1, a2);
+	return;
+}
+
+char* invert(char* s1){
+	int i = 0;
+	while(s1[i])
+		i++;
+	char *aux = malloc(sizeof(char)*i);
+	printf("\tTest..\n");
+	for( int j = 0; j < i; j++ )
+		aux[j] = s1[i-1-j];
+	printf("\tTest..\n");
+	return aux;
+
+}
+
 /*
 
 int main(){

@@ -4,7 +4,6 @@
 	#include <stdlib.h>
 	#include "simbolos.h"
 
-	tabla tSim;
 %}
              
 /* Declaraciones de BISON */
@@ -23,26 +22,35 @@
 %token CIERRA
 %token SEPARA
 %token MODULO
-%token COMILLA
+%token POTENCIA
 %token <cadena> CADENA
 %token <cadena> VARIABLE
+%token <cadena> VARIABLE_B
+%token <entero> VAR_INT
+%token <flotante> VAR_FLOAT
+%token <real> VAR_DOUBLE
+%token <cadena> VAR_CADENA
+%token <caracter> VAR_CHAR
 %token <cadena> TIPO
 %token <caracter> EQUALS
 %token <caracter> FIN_EXP
+%token EQ
+%token MAYOR
+%token MENOR
+%token IF
 
 %type <entero> exp_entera
 %type <flotante> exp_float
 %type <caracter> exp_char
 %type <cadena> string
-%type <cadena> nom_var
 %type <cadena> tipo
 %type <caracter> fin
-%type <caracter> equal
-
+%type <cadena> condicion
+%type <caracter> op_cond
              
 %left '+' '-'
 %left '*' '/'
-%left '^'
+%left '^' POTENCIA
              
 /* Gramática */
 %%
@@ -52,7 +60,10 @@ input:    /* cadena vacía */
 ;
 
 line:     '\n'
-		| tipo nom_var fin '\n' 	{
+		| condicion fin '\n'			{
+									printf("\tLa condicion es: %s\n",$1);
+									}
+		| tipo VARIABLE fin '\n' 	{
 									elemento e = malloc( sizeof(struct elemento) );
 									if( e == NULL)
 										printf("No se pudo reservar memoria\n");
@@ -84,7 +95,7 @@ line:     '\n'
 									}
 
 									}
-		| tipo nom_var equal exp_entera fin '\n' 	{
+		| tipo VARIABLE_B exp_entera fin '\n' 	{
 													printf("\tAsignacion entera...\n");
 													elemento e = malloc( sizeof(struct elemento) );
 													if( e == NULL)
@@ -94,16 +105,16 @@ line:     '\n'
 													e->id = tSim->elementos;
 													e->next = NULL;
 													if( strcmp($1, "int") == 0 ){
-														e->valor.entero = $4;
+														e->valor.entero = $3;
 													}
 													else if( strcmp($1, "float") == 0 ){
-														e->valor.flotante = (float)$4;
+														e->valor.flotante = (float)$3;
 													}
 													else if( strcmp($1, "char") == 0 ){
-														e->valor.caracter = (char)$4;
+														e->valor.caracter = (char)$3;
 													}
 													else if( strcmp($1, "double") == 0 ){
-														e->valor.real = (double)$4;
+														e->valor.real = (double)$3;
 													}
 
 													if( add(tSim, e) == 1 ){
@@ -113,7 +124,7 @@ line:     '\n'
 														printf("\n\n");
 													}
 													}
-		| tipo nom_var equal exp_float fin '\n' 	{
+		| tipo VARIABLE_B exp_float fin '\n' 		{
 													printf("\tAsignacion float or double\n");
 													elemento e = malloc( sizeof(struct elemento) );
 													if( e == NULL)
@@ -124,17 +135,17 @@ line:     '\n'
 													e->next = NULL;
 													if( strcmp($1, "int") == 0 ){
 														printf("\tSe pueden perder datos en este cast...\n");
-														e->valor.entero = (int)$4;
+														e->valor.entero = (int)$3;
 													}
 													else if( strcmp($1, "float") == 0 ){
-														e->valor.flotante = (float)$4;
+														e->valor.flotante = (float)$3;
 													}
 													else if( strcmp($1, "char") == 0 ){
 														printf("\tSe pueden perder datos en este cast...\n");
-														e->valor.caracter = (char)$4;
+														e->valor.caracter = (char)$3;
 													}
 													else if( strcmp($1, "double") == 0 ){
-														e->valor.real = (double)$4;
+														e->valor.real = (double)$3;
 													}
 
 													if( add(tSim, e) == 1 ){
@@ -144,72 +155,81 @@ line:     '\n'
 														printf("\n\n");
 													}
 													}
-		| nom_var equal exp_entera fin '\n'			{
+		| VARIABLE_B exp_entera fin '\n'			{
 													elemento e = search(tSim, $1);
 													if( e == NULL )
 														printf("\tNo existe la variable en la tabla\n");
 													else{
 														if( strcmp(e->type, "int") == 0 ){
-															e->valor.entero = (int)$3;
+															e->valor.entero = (int)$2;
 														}
 														else if( strcmp(e->type, "float") == 0 ){
-															e->valor.flotante = (float)$3;
+															e->valor.flotante = (float)$2;
 														}
 														else if( strcmp(e->type, "char") == 0 ){
-															e->valor.caracter = (char)$3;
+															e->valor.caracter = (char)$2;
 														}
 														else if( strcmp(e->type, "double") == 0 ){
-															e->valor.real = (double)$3;
+															e->valor.real = (double)$2;
+														}
+														else{
+															yyerror("Types String incompatible");
 														}
 														printf("\n\n\t----Tabla de Simbolos----\n\n");
 														print(tSim);
 													}
 													}
-		| nom_var equal exp_char fin '\n'			{
+		| VARIABLE_B exp_char fin '\n'			{
 													printf("\tIgualacion char\n");
 													elemento e = search(tSim, $1);
 													if( e == NULL )
 														printf("\tNo existe la variable en la tabla\n");
 													else{
 														if( strcmp(e->type, "int") == 0 ){
-															e->valor.entero = (int)$3;
+															e->valor.entero = (int)$2;
 														}
 														else if( strcmp(e->type, "float") == 0 ){
-															e->valor.flotante = (float)$3;
+															e->valor.flotante = (float)$2;
 														}
 														else if( strcmp(e->type, "char") == 0 ){
-															e->valor.caracter = (char)$3;
+															e->valor.caracter = (char)$2;
 														}
 														else if( strcmp(e->type, "double") == 0 ){
-															e->valor.real = (double)$3;
+															e->valor.real = (double)$2;
+														}
+														else{
+															yyerror("Types String incompatible");
 														}
 														printf("\n\n\t----Tabla de Simbolos----\n\n");
 														print(tSim);
 													}
 													}
-		| nom_var equal exp_float fin '\n'			{
-													printf("\tgualacion float or double\n");
+		| VARIABLE_B exp_float fin '\n'			{
+													printf("\tIgualacion float or double\n");
 													elemento e = search(tSim, $1);
 													if( e == NULL )
 														printf("\tNo existe la variable en la tabla\n");
 													else{
 														if( strcmp(e->type, "int") == 0 ){
-															e->valor.entero = (int)$3;
+															e->valor.entero = (int)$2;
 														}
 														else if( strcmp(e->type, "float") == 0 ){
-															e->valor.flotante = (float)$3;
+															e->valor.flotante = (float)$2;
 														}
 														else if( strcmp(e->type, "char") == 0 ){
-															e->valor.caracter = (char)$3;
+															e->valor.caracter = (char)$2;
 														}
 														else if( strcmp(e->type, "double") == 0 ){
-															e->valor.real = (double)$3;
+															e->valor.real = (double)$2;
+														}
+														else{
+															yyerror("Types String incompatible");
 														}
 														printf("\n\n\t----Tabla de Simbolos----\n\n");
 														print(tSim);
 													}
 													}
-		| tipo nom_var equal exp_char fin '\n' 		{
+		| tipo VARIABLE_B exp_char fin '\n' 		{
 													printf("\tAsignacion char\n");
 													elemento e = malloc( sizeof(struct elemento) );
 													if( e == NULL)
@@ -220,18 +240,18 @@ line:     '\n'
 													e->next = NULL;
 													if( strcmp($1, "int") == 0 ){
 														printf("\tSe pueden perder datos en este cast...\n");
-														e->valor.entero = (int)$4;
+														e->valor.entero = (int)$3;
 													}
 													else if( strcmp($1, "float") == 0 ){
 														printf("\tSe pueden perder datos en este cast...\n");
-														e->valor.flotante = (float)$4;
+														e->valor.flotante = (float)$3;
 													}
 													else if( strcmp($1, "char") == 0 ){
-														e->valor.caracter = (char)$4;
+														e->valor.caracter = (char)$3;
 													}
 													else if( strcmp($1, "double") == 0 ){
 														printf("\tSe pueden perder datos en este cast...\n");
-														e->valor.real = (double)$4;
+														e->valor.real = (double)$3;
 													}
 
 													if( add(tSim, e) == 1 ){
@@ -241,7 +261,7 @@ line:     '\n'
 														printf("\n\n");
 													}
 													}
-		| tipo nom_var equal string fin '\n' 		{
+		| tipo VARIABLE_B string fin '\n' 		{
 													printf("\tAsignacion cadena\n");
 													elemento e = malloc( sizeof(struct elemento) );
 													if( e == NULL)
@@ -250,13 +270,26 @@ line:     '\n'
 													e->nombre = $2;
 													e->id = tSim->elementos;
 													e->next = NULL;
-													e->valor.cadena = $4;
+													e->valor.cadena = $3;
 													int i = add(tSim,e);
 													print(tSim);
 													tSim->elementos++;
 													}
+		| VARIABLE_B string fin '\n' 			{
+													printf("\tIgualacion cadena\n");
+													elemento e = search(tSim, $1);
+													if( e == NULL )
+														printf("\tNo existe la variable en la tabla\n");
+													else{
+														if( strcmp(e->type, "string" ) == 0 ){
+															e->valor.cadena = $2;
+															print(tSim);
+														}
+														else
+															printf("Está asignando mal un string\n");
+													}
+													}
         | exp_entera '\n'  { printf ("\tresultado: %d\n", $1); }
-        | nom_var '\n' { printf("\tVar: %s", $1 ); }
         | exp_float '\n'  { printf ("\tresultado: %f\n", $1); }
         | string '\n'  {
         				printf ("\tresultado: "); 
@@ -270,78 +303,245 @@ line:     '\n'
                         }
 ;
 
-nom_var: VARIABLE 	{$$ = $1;}
-
 tipo: TIPO			{$$ = $1;}
 
-equal: EQUALS		{$$ = $1;}
-
 fin: FIN_EXP		{$$ = $1;}
-             
+
+op_cond:
+
+EQ  		{$$ = '='; }
+| MAYOR 	{$$ = '>';}
+| MENOR		{$$ = '<';}
+
+condicion: 
+
+IF ABRE exp_entera  op_cond exp_entera CIERRA			{
+														switch( $4 ){
+															case '=' :
+																if( $3 == $5 )
+																	$$ = "TRUE";
+																else
+																	$$ = "FALSE";
+															case '<' :
+																if( $3 < $5 )
+																	$$ = "TRUE";
+																else
+																	$$ = "FALSE";
+															case '>' :
+																if( $3 > $5 )
+																	$$ = "TRUE";
+																else
+																	$$ = "FALSE";
+														}
+														}
+| IF ABRE exp_entera  op_cond exp_float CIERRA			{
+														switch( $4 ){
+															case '=' :
+																if( $3 == $5 )
+																	$$ = "TRUE";
+																else
+																	$$ = "FALSE";
+															case '<' :
+																if( $3 < $5 )
+																	$$ = "TRUE";
+																else
+																	$$ = "FALSE";
+															case '>' :
+																if( $3 > $5 )
+																	$$ = "TRUE";
+																else
+																	$$ = "FALSE";
+														}
+														}
+| IF ABRE exp_float  op_cond exp_entera CIERRA			{
+														switch( $4 ){
+															case '=' :
+																if( $3 == $5 )
+																	$$ = "TRUE";
+																else
+																	$$ = "FALSE";
+															case '<' :
+																if( $3 < $5 )
+																	$$ = "TRUE";
+																else
+																	$$ = "FALSE";
+															case '>' :
+																if( $3 > $5 )
+																	$$ = "TRUE";
+																else
+																	$$ = "FALSE";
+														}
+														}
+| IF ABRE exp_float  op_cond exp_float CIERRA			{
+														switch( $4 ){
+															case '=' :
+																if( $3 == $5 )
+																	$$ = "TRUE";
+																else
+																	$$ = "FALSE";
+															case '<' :
+																if( $3 < $5 )
+																	$$ = "TRUE";
+																else
+																	$$ = "FALSE";
+															case '>' :
+																if( $3 > $5 )
+																	$$ = "TRUE";
+																else
+																	$$ = "FALSE";
+														}
+														}
+| IF ABRE exp_char  op_cond exp_char CIERRA				{
+														switch( $4 ){
+															case '=' :
+																if( $3 == $5 )
+																	$$ = "TRUE";
+																else
+																	$$ = "FALSE";
+															case '<' :
+																if( $3 < $5 )
+																	$$ = "TRUE";
+																else
+																	$$ = "FALSE";
+															case '>' :
+																if( $3 > $5 )
+																	$$ = "TRUE";
+																else
+																	$$ = "FALSE";
+														}
+														}
+| IF ABRE exp_char  op_cond exp_entera CIERRA			{
+														switch( $4 ){
+															case '=' :
+																if( $3 == $5 )
+																	$$ = "TRUE";
+																else
+																	$$ = "FALSE";
+															case '<' :
+																if( $3 < $5 )
+																	$$ = "TRUE";
+																else
+																	$$ = "FALSE";
+															case '>' :
+																if( $3 > $5 )
+																	$$ = "TRUE";
+																else
+																	$$ = "FALSE";
+														}
+														}
+| IF ABRE exp_entera  op_cond exp_char CIERRA			{
+														switch( $4 ){
+															case '=' :
+																if( $3 == $5 )
+																	$$ = "TRUE";
+																else
+																	$$ = "FALSE";
+															case '<' :
+																if( $3 < $5 )
+																	$$ = "TRUE";
+																else
+																	$$ = "FALSE";
+															case '>' :
+																if( $3 > $5 )
+																	$$ = "TRUE";
+																else
+																	$$ = "FALSE";
+														}
+														}
+| IF ABRE exp_char  op_cond exp_float CIERRA			{
+														switch( $4 ){
+															case '=' :
+																if( $3 == $5 )
+																	$$ = "TRUE";
+																else
+																	$$ = "FALSE";
+															case '<' :
+																if( $3 < $5 )
+																	$$ = "TRUE";
+																else
+																	$$ = "FALSE";
+															case '>' :
+																if( $3 > $5 )
+																	$$ = "TRUE";
+																else
+																	$$ = "FALSE";
+														}
+														}
+| IF ABRE exp_float  op_cond exp_char CIERRA			{
+														switch( $4 ){
+															case '=' :
+																if( $3 == $5 )
+																	$$ = "TRUE";
+																else
+																	$$ = "FALSE";
+															case '<' :
+																if( $3 < $5 )
+																	$$ = "TRUE";
+																else
+																	$$ = "FALSE";
+															case '>' :
+																if( $3 > $5 )
+																	$$ = "TRUE";
+																else
+																	$$ = "FALSE";
+														}
+														}
+
+
 exp_entera:     ENTERO	{ $$ = $1; }
-	| exp_entera '+' exp_entera        { $$ = $1 + $3;  }
-	| exp_entera '*' exp_entera        { $$ = $1 * $3;	}
-	| exp_entera '-' exp_entera        { $$ = $1 - $3;	}
-	| exp_entera '^' exp_entera        { $$ = $1 ^ $3;	}
+	| VAR_INT							{ $$ = $1;}
+	| exp_entera '+' exp_entera        	{ $$ = $1 + $3;  }
+	| exp_entera '*' exp_entera        	{ $$ = $1 * $3;	}
+	| exp_entera '-' exp_entera        	{ $$ = $1 - $3;	}
 	| MODULO ABRE exp_entera SEPARA exp_entera CIERRA 	{$$ = $3%$5;}
+	| POTENCIA ABRE exp_entera SEPARA exp_entera CIERRA 	{$$ = pow($3,$5);}
 ;
 
 exp_float: FLOTANTE                		 	{ $$ = $1; }
-	  | nom_var								{
-	  										elemento e = search(tSim, $1);
-											if( e == NULL )
-												printf("\tNo existe la variable en la tabla\n");
-											if( strcmp(e->type, "int") == 0 ){
-												$$ = (float) e->valor.entero;
-											}
-											else if( strcmp(e->type, "float") == 0 ){
-												$$ = (float) e->valor.flotante;
-											}
-											else if( strcmp(e->type, "char") == 0 ){
-												$$ = (float) e->valor.caracter;
-											}
-											else if( strcmp(e->type, "double") == 0 ){
-												$$ = (float) e->valor.real;
-											}
-											printf("\tFloat: %f\n", $$);
-										    }
-	  | exp_float '+' exp_float	 			{ $$ = $1 + $3; }
-	  | exp_float '-' exp_float	 			{ $$ = $1 - $3; }
-	  | exp_float '*' exp_float 			{ $$ = $1 * $3; }
-	  | exp_float '/' exp_float	 			{ $$ = $1 / $3; }
-	  | exp_entera '+' exp_float	 	 	{ $$ = $1 + $3; }
-	  | exp_entera '-' exp_float	 	 	{ $$ = $1 - $3; }
-	  | exp_entera '*' exp_float 			{ $$ = $1 * $3; }
-	  | exp_entera '/' exp_float	 		{ $$ = $1 / $3; }
-	  | exp_float '+' exp_entera	 	 	{ $$ = $1 + $3; }
-	  | exp_float '-' exp_entera	 	 	{ $$ = $1 - $3; }
-	  | exp_float '*' exp_entera 			{ $$ = $1 * $3; }
-	  | exp_float '/' exp_entera	 		{ $$ = $1 / $3; }
-	  | exp_entera '/' exp_entera			{ $$ = $1 / (float)$3; }
-	  | exp_entera '^' exp_float        	{ $$ = pow($1,$3);	}
-	  | exp_float '^' exp_float        		{ $$ = pow($1,$3);	}
-	  | exp_float '^' exp_entera        		{ $$ = pow($1,$3);	}
-
+	| VAR_FLOAT								{ $$ = $1;}
+	| VAR_DOUBLE							{ $$ = $1;}
+	| exp_float '+' exp_float	 			{ $$ = $1 + $3; }
+	| exp_float '-' exp_float	 			{ $$ = $1 - $3; }
+	| exp_float '*' exp_float 			{ $$ = $1 * $3; }
+	| exp_float '/' exp_float	 			{ $$ = $1 / $3; }
+	| exp_entera '+' exp_float	 	 	{ $$ = $1 + $3; }
+	| exp_entera '-' exp_float	 	 	{ $$ = $1 - $3; }
+	| exp_entera '*' exp_float 			{ $$ = $1 * $3; }
+	| exp_entera '/' exp_float	 		{ $$ = $1 / $3; }
+	| exp_float '+' exp_entera	 	 	{ $$ = $1 + $3; }
+	| exp_float '-' exp_entera	 	 	{ $$ = $1 - $3; }
+	| exp_float '*' exp_entera 			{ $$ = $1 * $3; }
+	| exp_float '/' exp_entera	 		{ $$ = $1 / $3; }
+	| exp_entera '/' exp_entera			{ $$ = $1 / (float)$3; }
 	|	MODULO ABRE exp_float SEPARA exp_float CIERRA 	{$$ = fmod($3,$5);}
 	|	MODULO ABRE exp_entera SEPARA exp_float CIERRA 	{$$ = fmod($3,$5);}
 	|	MODULO ABRE exp_float SEPARA exp_entera CIERRA 	{$$ = fmod($3,$5);}
+	|	POTENCIA ABRE exp_float SEPARA exp_entera CIERRA 	{ $$ = pow($3,$5); }
+	|	POTENCIA ABRE exp_entera SEPARA exp_float CIERRA 	{ $$ = pow($3,$5); }
+	|	POTENCIA ABRE exp_float SEPARA exp_float CIERRA 	{ $$ = pow($3,$5); }
+
 ;
 
 exp_char: CARACTER {$$ = $1;}
+| VAR_CHAR { $$ = $1; }
 
 string: CADENA 				{
 							printf("\tCadena: %s\n",$1);
 							$$ = $1;
 							}
-	|	 					{$$ = "";}
-	|	string '^' string 	{
-							int i = 0;
-							while( $1[i] )
-								i++;
-							char* aux = malloc(sizeof(char)*2*i);
-							for(int j = 0; j < 2*i; i++)
-								aux[j] = $1[j%i];
-							printf("%s\n", aux);
+	| VAR_CADENA			{$$ = $1;}
+	|	string '+' string  	{$$ = concat($1, $3);}
+	| string '^' exp_entera {
+							if( $3 > 0 ){
+								$$ = $1;
+								for(int i = 1; i < $3; i++)
+									$$ = concat($$, $$);
+							}
+							else if ( $3 < 0){
+								$$ = invert($1);
+								for(int i = 1; i < -$3; i++)
+									$$ = concat($$, $$);
+							}
 							}
 
 %%
